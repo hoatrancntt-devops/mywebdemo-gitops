@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: myweb-ns # Sử dụng namespace mới
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: backend } }
+  template:
+    metadata: { labels: { app: backend } }
+    spec:
+      containers:
+      - name: backend
+        image: hoatrancntt/mywebdemo-gitops:backend-latest
+        ports: [{ containerPort: 3000 }]
+---
+# --- SERVICE PART ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: myweb-ns
+spec:
+  selector: { app: backend }
+  ports: [{ port: 3000, targetPort: 3000 }]
+  type: ClusterIP

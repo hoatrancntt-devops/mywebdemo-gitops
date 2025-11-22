@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: myweb-ns
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: frontend } }
+  template:
+    metadata: { labels: { app: frontend } }
+    spec:
+      containers:
+      - name: frontend
+        image: hoatrancntt/mywebdemo-gitops:frontend-latest
+        ports: [{ containerPort: 80 }]
+---
+# --- SERVICE PART (NodePort) ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  namespace: myweb-ns
+spec:
+  selector: { app: frontend }
+  ports: [{ port: 80, targetPort: 80 }]
+  type: NodePort # QUAN TRỌNG: Để truy cập từ trình duyệt
