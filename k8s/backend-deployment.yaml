@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: hoatrancntt/mywebdemo-gitops:backend-latest
+        image: hoatrancntt/mywebdemo-gitops:backend-4
         ports: [{ containerPort: 3000 }]
 ---
 # --- SERVICE PART ---

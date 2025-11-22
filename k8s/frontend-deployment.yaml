@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: hoatrancntt/mywebdemo-gitops:frontend-latest
+        image: hoatrancntt/mywebdemo-gitops:frontend-4
         ports: [{ containerPort: 80 }]
 ---
 # --- SERVICE PART (NodePort) ---
